@@ -1,0 +1,107 @@
+{% extends 'main.html' %}
+
+{% block body %}
+    
+    <div class="page-wrapper">
+        <div class="content">
+            <div class="row">
+                <div class="col-sm-4 col-3">
+                    <h4 class="page-title">Change Student Fee</h4>
+                </div>
+                    
+                <div class="col-sm-8 col-9 text-right m-b-20">
+                    <div class="btn-group btn-group-sm">
+                        <select class="select">
+                            <option>Export As</option>
+                            <option>PDF</option>
+                            <option>CSV</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <p><strong><a href="/student/struck_off"> Go To Home</a></strong></p>
+
+            <div class="row" style="font-weight: bold;">
+                <div class="col-sm-12">
+                    <div class="card-box">
+                        <span class="title" style="font-weight: bold;"> Student General Information</span>
+                        <br><br>
+                        <div class="row" style="margin-top: 10px;">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Roll No</label>
+                                    <input type="text" class="form-control" readonly="" placeholder="{{ selected_student.roll_no }}">  
+                                </div>
+                            </div>
+                            <div class="col-md-4">                            
+                                <label>Student Name</label>
+                                <input type="text" class="form-control" readonly="" placeholder="{{ selected_student.name }}">    
+                            </div>
+                            <div class="col-md-4">
+                                <label>Father Name</label>
+                                <input type="text" class="form-control" readonly="" placeholder="{{ selected_student.father_name }}">
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 5px;">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Contact No</label>
+                                    <input type="text" class="form-control" readonly="" placeholder="{{ selected_student.contact_no }}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">                            
+                                <label>Class</label>
+                                <input type="text" class="form-control" readonly="" placeholder="{{ selected_student.class_no }}">    
+                            </div>
+                            <div class="col-md-4">
+                                <label>Section</label>
+                                <input type="text" class="form-control" readonly="" placeholder="{{ selected_student.section }}">
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 5px;">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <input type="text" class="form-control" readonly="" placeholder="{{ selected_student.address }}">    
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Student Type</label>
+                                <input type="text" class="form-control" readonly="" placeholder="{{ selected_student.student_type }}">
+                            </div>
+                        </div>
+                    </div>
+                        
+                    
+
+                    <div class="card-box">
+                        <span class="title" style="font-weight: bold;"> Struck Off Confirmation</span><br><br>
+                        <form method="post" action="{% url 'do_struck_off' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="id" value="{{ selected_student.id }}">
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-md-6">
+                                    <label>Are You Sure That You Want To Struck Off {{ selected_student.name }}</label>
+                                    <select class="select" name="struck_off" required="required">
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                    </select>   
+                                </div> 
+                                <div class="col-md-6">
+                                    <label>Student Name Below Will Be Struked Off</label>
+                                    <input type="text" class="form-control" readonly="" placeholder="{{ selected_student.name }}"> 
+                                </div>                           
+                            </div>
+                            <br/>
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-primary" style="float: left;">Proceed To Struck Off</button>
+                                </div>
+                            </div>
+                        </form>
+            </div>
+        </div>
+        
+    </div>
+
+{% endblock body %}

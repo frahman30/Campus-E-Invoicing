@@ -1,0 +1,59 @@
+{% extends 'main.html' %}
+
+{% block body %}
+    
+    <div class="page-wrapper">
+        <div class="content">
+            <div class="row">
+                <div class="col-sm-4 col-3">
+                    <h4 class="page-title">Cash In Records</h4>
+                </div>
+                <div class="col-sm-8 col-9 text-right m-b-20">
+                    <div class="btn-group btn-group-sm" style="margin-right: 8px">
+                        <select class="select">
+                            <option><a href=""> Cash In </a></option>
+                        </select>
+                        <button class ="btn btn-primary"> <i class="fa fa-plus"> </i> <a href="{% url 'cash_record' %}" style="color: #fff"> Add New </a> </button>
+                    </div>
+                 </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card-box">
+                        <div class="card-block">
+                            <div class="table-responsive">
+                                <table id="example" class=" table table-stripped  dt-responsive  " >
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Cash In Amount</th>
+                                            <th>Cash In Description</th>
+                                            <th>Date</th>
+                                            <th>Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for var in records_list %}
+                                            {% if var.cash_out == 0 %}                             
+                                            <tr>
+                                                <td>{{ var.id }}</td>
+                                                <td>{{ var.cash_in }}</td>
+                                                <td>{{ var.description_cash_in }}</td>
+                                                <td>{{ var.date_filed.date }}</td>
+                                                <td style="text-transform: uppercase;">{{ var.date_filed.time }}</td>
+                                            </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}
+

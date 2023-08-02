@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
+    <title> {{ var.roll_no }} - {{ my }} </title>
+    <link href="{% static 'fonts.googleapis.com/css278f.css?family=Fira+Sans:400,500,600,700' %}" rel="stylesheet">
+    <link href="{% static 'fonts.googleapis.com/icone91f.css?family=Material+Icons' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dataTables.bootstrap4.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/select2.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-datetimepicker.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/morris/morris.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <!--[if lt IE 9]>
+        <script src="{% static 'js/html5shiv.min.js' %}"></script>
+        <script src="{% static 'js/respond.min.js' %}"></script>
+    <![endif]-->
+</head>
+
+<body>
+    
+    <div class="page-wrapper" style="color: black; width: 95%; margin-left: 30px; margin-top: -50px;">
+        <div class="content">
+            <p><strong><a href="/student/show"> Go To Home</a><span style="float: right;">Monthly Data of {{ var.name }} - {{ my }}</span></strong></p>
+
+            <div class="row" style="font-weight: bold;">
+                <div class="col-sm-12">
+                    <div class="card-box">
+                        <span class="title" style="font-weight: bold;"> Student General Information</span>
+                        <br><br>
+                        <div class="row" style="margin-top: 10px;">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Roll No</label>
+                                    <input type="text" class="form-control" placeholder="{{ var.roll_no }}">  
+                                </div>
+                            </div>
+                            <div class="col-md-4">                            
+                                <label>Student Name</label>
+                                <input type="text" class="form-control" placeholder="{{ var.name }}">    
+                            </div>
+                            <div class="col-md-4">
+                                <label>Father Name</label>
+                                <input type="text" class="form-control" placeholder="{{ var.father_name }}">
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 5px;">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Contact No</label>
+                                    <input type="text" class="form-control" placeholder="{{ var.contact_no }}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">                            
+                                <label>Class</label>
+                                <input type="text" class="form-control" placeholder="{{ var.class_no }}">    
+                            </div>
+                            <div class="col-md-4">
+                                <label>Section</label>
+                                <input type="text" class="form-control" placeholder="{{ var.section }}">
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 5px;">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <input type="text" class="form-control" placeholder="{{ var.address }}">    
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Student Type</label>
+                                <input type="text" class="form-control" placeholder="{{ var.student_type }}">
+                            </div>
+                        </div>
+                    </div>
+                        
+                    <div class="card-box">
+                        <div class="card-block">
+                            <span class="title" style="font-weight: bold;"> Monthly Fee Record <span style="float: right;">Total Monthly Fee: {{ fee.amount }} </span></span><br><br>
+                            <div class="table-responsive">
+                                <table class= "table table-bordered m-b-0" >
+                                    <thead>
+                                        <tr>
+                                            <th>Jan</th>
+                                            <th>Feb</th>
+                                            <th>March</th>
+                                            <th>April</th>
+                                            <th>May</th>
+                                            <th>June</th>
+                                            <th>July</th>
+                                            <th>Aug</th>
+                                            <th>Sep</th>
+                                            <th>Oct</th>
+                                            <th>Nov</th>
+                                            <th>Dec</th>                                          
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="table-info">
+                                            <td>{{ month.january }}</td>
+                                            <td>{{ month.february }}</td>
+                                            <td>{{ month.march }}</td>
+                                            <td>{{ month.april }}</td>
+                                            <td>{{ month.may }}</td>
+                                            <td>{{ month.june }}</td>
+                                            <td>{{ month.july }}</td>
+                                            <td>{{ month.august }}</td>
+                                            <td>{{ month.september }}</td>
+                                            <td>{{ month.october }}</td>
+                                            <td>{{ month.november }}</td>
+                                            <td>{{ month.december }}</td>                                        
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+                        
+                    <div class="card-box">
+                        <div class="card-block">
+                            <span class="title" style="font-weight: bold;"> Annual Fee Record<br><br>
+                            <div class="table-responsive">
+                                <table class= "table table-bordered m-b-0" >
+                                    <thead>
+                                        <tr>
+                                            <th>Year</th>
+                                            <th>Total Fee Paid This Year</th>
+                                            <th>Total Balance Remaining In This Year</th>                                    
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="table-info">
+                                            <td>{{ year.current_year }}</td>
+                                            <td>{{ year.total_paid_this_year }}</td>
+                                            <td>{{ year.total_balance_this_year }}</td>                 
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-box">
+                        <span class="title" style="font-weight: bold;"> Student Fee Information - {{ my }}</span><br><br>
+                        <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Fee Paid</label>
+                                <input type="text" class="form-control" placeholder="{{ my_fee }}">    
+                            </div>
+                        </div>
+                        <div class="col-md-4">                            
+                            <label>Fee Balance</label>
+                            <input type="text" class="form-control" placeholder="{{ fee_bal }}">    
+                        </div>
+                        <div class="col-md-4">
+                            <label>Month</label>
+                            <input type="text" class="form-control" placeholder="{{ my }}">                            
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+        
+    </div>
+
+</body>

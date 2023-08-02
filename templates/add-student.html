@@ -1,0 +1,103 @@
+{% extends 'main.html' %}
+
+{% block body %}
+
+
+        <div class="page-wrapper">
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <h4 class="page-title" style="padding-bottom: 25px;">
+                            Add Student
+                        </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <form method="post" action="{% url 'add_student' %}">
+                        {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+										<label>Roll No</label>
+										<input class="form-control" type="number" name="roll_no" required="required">
+									</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Student Name</label>                                        
+                                        <input class="form-control" type="text" name="student_name" required="required">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Father Name</label>                                        
+                                        <input class="form-control" type="text" name="father_name" required="required">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Contact No</label>                                        
+                                        <input class="form-control" type="number" name="contact_no" required="required">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Class</label>                                                            
+                                        <input class="form-control" type="text" name="class" required="required">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Section</label>                                                            
+                                        <input class="form-control" type="text" name="section" required="required">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Address</label>                                        
+                                        <input class="form-control" type="text" name="address" required="required">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Student Type</label>                                        
+                                        <select class="select" name="student_type" required="required">
+                                            <option>Army</option>
+                                            <option>Civil</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="m-t-20 text-center">
+                                <button class="btn btn-primary submit-btn">Add Student</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar-overlay" data-reff=""></div>
+
+{% endblock body %}

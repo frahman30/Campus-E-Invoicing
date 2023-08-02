@@ -1,0 +1,203 @@
+{% extends 'main.html' %}
+
+{% block body %}
+    
+    <div class="page-wrapper">
+        <div class="content">
+            <div class="row">
+                <div class="col-sm-4 col-3">
+                    <h4 class="page-title">Manage Student</h4>
+                </div>
+                    
+                <div class="col-sm-8 col-9 text-right m-b-20">
+                    <div class="btn-group btn-group-sm">
+                        <button type="button" class="btn btn-primary"><a href="/student/save_information/{{ var.id }}" style="color: #fff;"> Save Data </a></button>
+                    </div>
+                </div>
+            </div>
+            <p><strong><a href="/student/show"> Go To Home</a></strong></p>
+
+            <div class="row" style="font-weight: bold;">
+                <div class="col-sm-12">
+                    <div class="card-box">
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <span class="title" style="font-weight: bold;"> Student General Information</span>
+                        <br><br>
+                        <div class="row" style="margin-top: 10px;">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Roll No</label>
+                                    <input type="text" class="form-control" readonly="" placeholder="{{ var.roll_no }}">  
+                                </div>
+                            </div>
+                            <div class="col-md-4">                            
+                                <label>Student Name</label>
+                                <input type="text" class="form-control" readonly="" placeholder="{{ var.name }}">    
+                            </div>
+                            <div class="col-md-4">
+                                <label>Father Name</label>
+                                <input type="text" class="form-control" readonly="" placeholder="{{ var.father_name }}">
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 5px;">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Contact No</label>
+                                    <input type="text" class="form-control" readonly="" placeholder="{{ var.contact_no }}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">                            
+                                <label>Class</label>
+                                <input type="text" class="form-control" readonly="" placeholder="{{ var.class_no }}">    
+                            </div>
+                            <div class="col-md-4">
+                                <label>Section</label>
+                                <input type="text" class="form-control" readonly="" placeholder="{{ var.section }}">
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 5px;">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <input type="text" class="form-control" readonly="" placeholder="{{ var.address }}">    
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Student Type</label>
+                                <input type="text" class="form-control" readonly="" placeholder="{{ var.student_type }}">
+                            </div>
+                        </div>
+                    </div>
+                        
+                    <div class="card-box">
+                        <div class="card-block">
+                            <span class="title" style="font-weight: bold;"> Monthly Fee Record <span style="float: right;">Total Monthly Fee: {{ fee.amount }} </span></span><br><br>
+                            <div class="table-responsive">
+                                <table class= "table table-bordered m-b-0" >
+                                    <thead>
+                                        <tr>
+                                            <th>Jan</th>
+                                            <th>Feb</th>
+                                            <th>March</th>
+                                            <th>April</th>
+                                            <th>May</th>
+                                            <th>June</th>
+                                            <th>July</th>
+                                            <th>Aug</th>
+                                            <th>Sep</th>
+                                            <th>Oct</th>
+                                            <th>Nov</th>
+                                            <th>Dec</th>                                          
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="table-info">
+                                            <td>{{ month.january }}</td>
+                                            <td>{{ month.february }}</td>
+                                            <td>{{ month.march }}</td>
+                                            <td>{{ month.april }}</td>
+                                            <td>{{ month.may }}</td>
+                                            <td>{{ month.june }}</td>
+                                            <td>{{ month.july }}</td>
+                                            <td>{{ month.august }}</td>
+                                            <td>{{ month.september }}</td>
+                                            <td>{{ month.october }}</td>
+                                            <td>{{ month.november }}</td>
+                                            <td>{{ month.december }}</td>                                        
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+                        
+                    <div class="card-box">
+                        <div class="card-block">
+                            <span class="title" style="font-weight: bold;"> Annual Fee Record<br><br>
+                            <div class="table-responsive">
+                                <table class= "table table-bordered m-b-0" >
+                                    <thead>
+                                        <tr>
+                                            <th>Year</th>
+                                            <th>Total Fee Paid This Year</th>
+                                            <th>Total Balance Remaining In This Year</th>                                    
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="table-info">
+                                            <td>{{ year.current_year }}</td>
+                                            <td>{{ year.total_paid_this_year }}</td>
+                                            <td>{{ year.total_balance_this_year }}</td>                          
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-box">
+                        <span class="title" style="font-weight: bold;"> Student Fee Information</span><br><br>
+                        <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Fee Paid</label>
+                                <input type="text" class="form-control" readonly="" placeholder="{{ my_fee }}">    
+                            </div>
+                        </div>
+                        <div class="col-md-4">                            
+                            <label>Fee Balance</label>
+                            <input type="text" class="form-control" readonly="" placeholder="{{ fee_bal }}">    
+                        </div>
+                        <div class="col-md-4">
+                            <label>Month</label>
+                            <input type="text" class="form-control" readonly="" placeholder="{{ my }}">                            
+                        </div>
+                    </div>
+                    <form method="post" action="{% url 'pay_fee' %}">
+                    {% csrf_token %}
+                        <input type="hidden" name="id" value="{{ var.id }}">
+                        <div class="row" style="margin-top: 10px;">
+                            <div class="col-md-6">
+                                <label>* Enter Amount (Must be equal to balance amount to clear dues)</label>
+                                <input type="number" class="form-control" name="fee" required="required" min="1">                          
+                            </div>
+                            <div class="col-md-6">
+                                <label>* Select Month (Select month for which you are paying fee)</label>
+                                <select class="select" name="month" required="required">
+                                    <option>January</option>
+                                    <option>February</option>
+                                    <option>March</option>
+                                    <option>April</option>
+                                    <option>May</option>
+                                    <option>June</option>
+                                    <option>July</option>
+                                    <option>August</option>
+                                    <option>September</option>
+                                    <option>October</option>
+                                    <option>November</option>
+                                    <option>December</option>
+                                </select>                       
+                            </div>
+                        </div>
+                        <br/>
+                        
+                        <button type="button" class="btn btn-primary"><a href="/student/challan_form/{{ var.id }}" style="color: #fff;">Generate Challan Form</a></button>
+                        <button type="submit" class="btn btn-primary" style="float: right;">Save</button>
+                    </div>
+                </form>
+                    <p><a href="/student/show"> Go To Home</a></p>
+
+            </div>
+        </div>
+        
+    </div>
+
+{% endblock body %}

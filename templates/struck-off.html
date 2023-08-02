@@ -1,0 +1,78 @@
+{% extends 'main.html' %}
+
+{% block body %}
+    
+    <div class="page-wrapper">
+        <div class="content">
+            <div class="row">
+                <div class="col-sm-4 col-3">
+                    <h4 class="page-title">Struck Off Student</h4>
+                </div>
+                <div class="col-sm-8 col-9 text-right m-b-20">
+                    <div class="btn-group btn-group-sm" style="margin-right: 8px">
+                        <select class="select">
+                            <option>Export As</option>
+                            <option>PDF</option>
+                            <option>CSV</option>
+                        </select>
+                        <button class ="btn btn-primary"> <i class="fa fa-plus"> </i> <a href="{% url 'add_student' %}" style="color: #fff"> Add New </a> </button>
+                    </div>
+                 </div>
+            </div>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{message.tags}}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card-box">
+                        <div class="card-block">
+                            <div class="table-responsive">
+                                <table id="example" class=" table table-stripped  dt-responsive  " >
+                                    <thead>
+                                        <tr>
+                                            <th>Roll No</th>
+                                            <th>Name</th>
+                                            <th>Father Name</th>
+                                            <th>Monthly Fee</th> 
+                                            <th>Contact No</th>                                            
+                                            <th>Fee Status</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for var in students_list %}                               
+                                            <tr>
+                                                <td>{{ var.roll_no }}</td>
+                                                <td>{{ var.name }}</td>
+                                                <td>{{ var.father_name }}</td>
+                                                {% for x in fee_list %}
+                                                    {% if x.id == var.id %}
+                                                        <td>{{ x.amount }}</td>
+                                                        <td>{{ var.contact_no }}</td>
+                                                        {% if x.status == True %}
+                                                            <td><span class="custom-badge status-green">Paid</span></td>
+                                                        {% else %}
+                                                            <td><span class="custom-badge status-red">Pending</span></td>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                {% endfor %}
+
+                                                <td class="text-center"><a href="/student/struck_off_confirm/{{ var.id }}">Struck Off</a></td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}
+

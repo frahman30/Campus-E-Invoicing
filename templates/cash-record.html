@@ -1,0 +1,116 @@
+{% extends 'main.html' %}
+
+{% block body %}
+    
+    <div class="page-wrapper">
+        <div class="content">
+            <div class="row">
+                <div class="col-sm-4 col-3">
+                    <h4 class="page-title"> Cash Transactions </h4>
+                </div>
+                    
+                <div class="col-sm-8 col-9 text-right m-b-20">
+                    <div class="btn-group btn-group-sm">
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-primary" style="float: left;"><a href="{% url 'start_session' %}" style="color: #fff">Start Session</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p><strong><a href="/student/cash_record"> Go To Home</a></strong></p>
+
+            <div class="row" style="font-weight: bold;">
+                <div class="col-sm-12">
+                        {% if messages %}
+                            {% for message in  messages %}
+                                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                            {% endfor %}
+                        {% endif %}
+                    <div class="card-box">
+                        <span class="title" style="font-weight: bold;"> School Transactions </span>
+                        <br><br>
+                        <div class="row" style="margin-top: 10px;">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Total Cash In</label>
+                                    <input type="text" class="form-control" readonly="" placeholder="{{ cash_list.total_in }}">  
+                                </div>
+                            </div>
+                            <div class="col-md-6">                            
+                                <label>Total Cash Out</label>
+                                <input type="text" class="form-control" readonly="" placeholder="{{ cash_list.total_out }}">    
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+                        
+                    
+
+                    <div class="card-box">
+                        <span class="title" style="font-weight: bold;">Cash In Counter</span><br><br>
+                        <form method="post" action="{% url 'proceed_cash_in' %}">
+                            {% csrf_token %}
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-md-6">
+                                    <label>Enter Cash In Amount</label>
+                                    <input type="number" class="form-control" name="cash_entered" min="1" required="required">   
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Are You Sure To Proceed Cash In</label>
+                                    <select class="select" name="proceed_cash_in" required="required">
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                    </select>   
+                                </div>
+                                <br/><br/><br/><br/>
+                                <div class="col-md-12">                            
+                                    <label>Enter The Purpose Of Cash In (Description)</label>
+                                    <input type="text" class="form-control" name="description" required="required">
+                                </div>
+
+                            </div>
+                            <br/>
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-primary" style="float: left;">Proceed To Cash In</button>
+                                </div>
+                            </div>
+                        </form>
+            </div>
+
+             <div class="card-box">
+                        <span class="title" style="font-weight: bold;">Cash Out Counter</span><br><br>
+                        <form method="post" action="{% url 'proceed_cash_out' %}">
+                            {% csrf_token %}
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-md-6">
+                                    <label>Enter Cash Out Amount</label>
+                                    <input type="number" class="form-control" name="cash_entered" min="1" required="required">   
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Are You Sure To Proceed Cash Out</label>
+                                    <select class="select" name="proceed_cash_out" required="required">
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                    </select>   
+                                </div>
+                                <br/><br/><br/><br/>
+                                <div class="col-md-12">                            
+                                    <label>Enter The Purpose Of Cash Out (Description)</label>
+                                    <input type="text" class="form-control" name="description" required="required">
+                                </div>                           
+                            </div>
+                            <br/>
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-primary" style="float: left;">Proceed To Cash Out</button>
+                                </div>
+                            </div>
+                        </form>
+            </div>
+        </div>
+        
+    </div>
+
+{% endblock body %}
